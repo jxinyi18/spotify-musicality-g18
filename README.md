@@ -1,7 +1,7 @@
 # Spotify: Relationship Between Danceability of a Song and Number of Weeks on Chart
 <b> Group members: </b> Prae Kongchan, Ninh Nguyen, Jacqueline Guerra, Huiling Xiao, Van Le & Joyce Xinyi Jiang
 <br> 
-<b> Details: </b> DSO 510 / Business Analytics / University of Southern California (USC) / Marshall School of Business / M.S. Business Analytics
+<b> Details: </b> Final Group Project / DSO 510 / Business Analytics / University of Southern California (USC) / Marshall School of Business / M.S. Business Analytics
 <br>
 <b> Spotify's Data Definitions: </b> Definition of individual track elements, structure and content follows the description provided by Spotify. 
 <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-analysis"> (link) </a>
