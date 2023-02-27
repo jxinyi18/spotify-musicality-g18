@@ -24,17 +24,32 @@ What makes a song successful on the charts is difficult to predict. Music is col
 
 # Ideal Experiment
 We will use between-subjects (independent measures) design where songs are randomly assigned a level of danceability (none, low, or high), follow that level of danceability throughout the experiment, and observe how it will impact the weeks a song spends on chart. In reality, this experiment is difficult to conduct as a song often consists of multiple attributes which are intertwined.
+<br>
+<img width="542" alt="Screenshot 2023-02-27 at 1 47 06 PM" src="https://user-images.githubusercontent.com/85601510/221693189-fa1e00ce-6b84-4670-a27d-ee7cb329815e.png">
+</br>
 
 # Data Exploration & Preparation
 To inform our analysis, we have obtained two datasets from Kaggle, sourced from Spotify and one from Github, sourced from TikTok. The first dataset contains information about global top charted songs from 2022 with various attributes given to each song. The following dataset with information about Spotify artists and details such as numbers of streams, etc, which provides an overview to how popular each artist is; as popularity of an artist may potentially affect how long a song stays on the chart. Finally, to further explore how tiktok trends may affect popularity of a song, the last dataset includes information of songs which appeared on TikTok.
 <br>
 Thus, we have merged the datasets by using artist names and song names as the identifiers. To prepare the data, we first created a dummy variable for TikTok. If there is a match of a track’s name between datasets, it will return 1 for a song that appears on TikTok; 0 otherwise. We removed extreme outliers (values above 95th percentile and 5th percentile) and transformed the data which are right-skewed by logging the variables. The final dataset has 447 rows in total and contains columns like artist name, number of streams, track name, log(number of weeks on chart), log(danceability), log(energy), appearance on TikTok, etc. Additionally, each row represents individual songs with unique attributes. However, songs from the same artist will share the same artist details. Finally, the outcome variable of interest for this analysis would be the log of number of weeks on the chart. </br>
-
+<br>
+<img width="492" alt="Screenshot 2023-02-27 at 1 41 54 PM" src="https://user-images.githubusercontent.com/85601510/221692669-9bf2e711-ade4-47e7-b21b-6b29fcc1bd81.png">
+</br>
 # Descriptive Analytics 
-Through data exploration, we have found that there are extreme outliers in our dataset that may potentially impact the outcome and interpretation of our findings. For example, the maximum value for Streams and Weeks On Chart is significantly far from the mean. Hence, they validated our decision of removing outliers and transforming the data to better prepare our model. Moreover, it is evident that it is impossible to have 0 danceability in a song as the minimum value is 0.398. This emphasizes the fact that our ideal experiment with random assignment of danceability is unrealistic as music is always comprised of a multitude of musical elements which gives its individual uniqueness. 
+Through data exploration, we have found that there are extreme outliers in our dataset that may potentially impact the outcome and interpretation of our findings. For example, the maximum value for Streams and Weeks On Chart is significantly far from the mean. Hence, they validated our decision of removing outliers and transforming the data to better prepare our model. Moreover, it is evident that it is impossible to have 0 danceability in a song as the minimum value is 0.398. This emphasizes the fact that our ideal experiment with random assignment of danceability is unrealistic as music is always comprised of a multitude of musical elements which gives its individual uniqueness.
+<br>
+<img width="648" alt="Screenshot 2023-02-27 at 1 42 06 PM" src="https://user-images.githubusercontent.com/85601510/221692812-b3e4266d-3ed1-4934-99b9-ef1e79cc74cb.png">
+</br>
 
 # Model Explanation
 We included all variables in our preliminary model; however, we found that Loudness and Energy were highly correlated at 0.713 after assessing the model results. Given that this is significantly higher than the correlation between Log Weeks on Chart and Log Danceability (0.017), we removed Energy to avoid potential issues with collinearity since it was the less significant variable. Once Energy was removed, Loudness became slightly more significant, and the R-squared value remained the same as 0.16, indicating the strength of the model had not changed.
+<br>
+<img width="646" alt="Screenshot 2023-02-27 at 1 42 28 PM" src="https://user-images.githubusercontent.com/85601510/221692958-61d471a1-704b-488c-b8a9-c723fe13bc3c.png">
+<img width="645" alt="Screenshot 2023-02-27 at 1 42 16 PM" src="https://user-images.githubusercontent.com/85601510/221692965-6ea4101c-03b6-4baa-a4ea-b0db549be1f1.png">
+</br>
+<br>
+<img width="606" alt="Screenshot 2023-02-27 at 1 42 46 PM" src="https://user-images.githubusercontent.com/85601510/221693008-a43cdbd6-86fe-4f1e-b91a-7592ea8ea4a1.png">
+</br>
 
 # Conclusion
 In conclusion, our control variables, TikTok, Streams and Loudness are observed to be a stronger predictor than our main variable in terms of how long a song may spend on the charts. One reason that danceability could have not been a significant variable is because we assumed more danceable songs would be the ones that are popular on TikTok due to dance trends: however, after assessing the data, we found the assumption to be less linear and there are also a variety of elements that inform TikTok trends. Given the R2 of our model was fairly low at 0.16, it is also evident that outside elements, which we have not included, also plays a role in influencing the results. The elements, for example: 
